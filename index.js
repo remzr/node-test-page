@@ -10,7 +10,7 @@ const port = 3000;
 const server = http.createServer((req, res) => {
     
     //Runs on every request
-    fs.readFile('index.html', (err, html) => {
+    fs.readFile(__dirname + '/index.html', (err, html) => {
         
         //Runs when file is rdy
         if(err){
