@@ -24,24 +24,25 @@ function readHTML(path, res) {
 }    
 
 // Create a local server
-app.get("/", (req, res) => {
-    
-    let filePath; 
-
-    //Which file has to be read?
-    if (req.url === '/' || req.url === '/index.html') {
-        filePath = __dirname + '/index.html';
-    } else if (req.url === '/about.html') {
-        filePath = __dirname + '/about.html';
-    } else if (req.url === '/contact-me.html') {
-        filePath = __dirname + '/contact-me.html';
-    } else {
-        filePath = __dirname + '/404.html';
-    }
-
-    //Runs on every request
+app.get("/contact-me.html", (req, res) => {    
+    filePath = __dirname + '/contact-me.html';
     readHTML(filePath, res);
 });
+
+app.get("/about.html", (req, res) => {    
+    filePath = __dirname + '/about.html';
+    readHTML(filePath, res);
+});
+
+app.get("/", (req, res) => {    
+    filePath = __dirname + '/index.html';
+    readHTML(filePath, res);
+});
+
+app.get("/*path", (req, res) => {
+    filePath = __dirname + '/404.html'
+    readHTML(filePath, res);
+})
 
 //Start listening
 app.listen(PORT, (error) => {
